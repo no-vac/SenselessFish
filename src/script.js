@@ -29,7 +29,10 @@ function createFish(username) {
   fishwrapperEl.appendChild(usernameEl);
 
   let imgEl = document.createElement('img');
-  imgEl.setAttribute('src', location.origin + '/assets/fish.png');
+  imgEl.setAttribute(
+    'src',
+    location.origin + location.pathname + '/assets/fish.png'
+  );
   imgEl.setAttribute('width', '50');
   fishwrapperEl.appendChild(imgEl);
 
