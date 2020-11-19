@@ -12,7 +12,7 @@ ComfyJS.onChat = (user, message, flags, self, extra) => {
 
   createFish(user);
 };
-ComfyJS.Init('cemka');
+ComfyJS.Init('senselesssamie');
 
 function createFish(username) {
   let randomId = Math.round(Math.random() * 1000);
