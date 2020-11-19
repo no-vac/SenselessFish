@@ -1,20 +1,21 @@
-let body = document
-  .querySelector('body')
-  .addEventListener('click', () => createFish());
+// const anime = require('animejs');
+const ComfyJS = require('comfy.js');
+
+// document.querySelector('body').addEventListener('click', () => createFish());
 let fishies = [];
 
-let ComfyJS = require('comfy.js');
 ComfyJS.onChat = (user, message, flags, self, extra) => {
-  console.log(`${user}: ${message}`);
-  console.log('flags: ', flags);
-  console.log('self: ', self);
-  console.log('extra: ', extra);
+  // console.log(`${user}: ${message}`);
+  // console.log('flags: ', flags);
+  // console.log('self: ', self);
+  // console.log('extra: ', extra);
+
+  createFish(user);
 };
-ComfyJS.Init('taerss');
+ComfyJS.Init('cemka');
 
 function createFish(username) {
   let randomId = Math.round(Math.random() * 1000);
-  username = randomId;
   console.log('creating fish ', randomId);
 
   let fishwrapperEl = document.createElement('div');
@@ -28,8 +29,8 @@ function createFish(username) {
   fishwrapperEl.appendChild(usernameEl);
 
   let imgEl = document.createElement('img');
-  imgEl.setAttribute('src', './assets/fish.png');
-  imgEl.setAttribute('width', '100');
+  imgEl.setAttribute('src', '../assets/fish.png');
+  imgEl.setAttribute('width', '50');
   fishwrapperEl.appendChild(imgEl);
 
   document.querySelector('body').appendChild(fishwrapperEl);
@@ -37,13 +38,6 @@ function createFish(username) {
     targets: document.querySelector('#f' + randomId),
 
     keyframes: [
-      // {
-      //   translateX: 200,
-      //   translateY: 200,
-      //   duration: 3000,
-      //   opacity: 1,
-      // },
-
       {
         translateY: anime.random(200, 1080 - 200),
         translateX: anime.random(100, 1920 - 100),
