@@ -5,9 +5,10 @@ let fishies = [];
 
 const XOFFSET = 50;
 const YOFFSET = 150;
-const STEPS = 6;
+const STEPS = 7;
 const STEPTIME = 6000;
 const STREAM = 'senselesssamie';
+const REWARDID = '7b60210b-4a9a-46de-8593-9d189b02c912';
 
 // document
 //   .querySelector('body')
@@ -15,12 +16,15 @@ const STREAM = 'senselesssamie';
 
 ComfyJS.onChat = (user, message, flags, self, extra) => {
   // if (extra.userState['msg-id'] === 'highlighted-message') {
-  console.log(user, '\nflags: ', flags);
-  console.log('self: ', self);
-  console.log('extra: ', extra);
-  console.log('message: ', message);
+  // console.log(user, '\nflags: ', flags);
+  // console.log('self: ', self);
+  // console.log('extra: ', extra);
+  // console.log('message: ', message);
 
-  createFish(user);
+  if (extra.customRewardId === REWARDID) {
+    createFish(user);
+  }
+
   // }
 };
 ComfyJS.Init(STREAM);

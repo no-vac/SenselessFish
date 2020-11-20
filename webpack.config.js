@@ -1,6 +1,5 @@
 const path = require('path');
 module.exports = {
-  watch: true,
   entry: './src/script.js',
   output: {
     filename: 'main.js',
