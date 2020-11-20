@@ -15,14 +15,15 @@ const STREAM = 'senselesssamie';
 
 ComfyJS.onChat = (user, message, flags, self, extra) => {
   // if (extra.userState['msg-id'] === 'highlighted-message') {
-  // console.log(user, '\nflags: ', flags);
-  // console.log('self: ', self);
-  // console.log('extra: ', extra);
+  console.log(user, '\nflags: ', flags);
+  console.log('self: ', self);
+  console.log('extra: ', extra);
+  console.log('message: ', message);
 
-  createFish(STREAM);
+  createFish(user);
   // }
 };
-ComfyJS.Init('shroud');
+ComfyJS.Init(STREAM);
 
 function createFish(username) {
   let randomId = Math.round(Math.random() * 1000);
@@ -82,6 +83,5 @@ function genKeyframes(steps) {
     translateY: -300,
     duration: STEPTIME,
   });
-  console.log('keyframes', keyframes);
   return keyframes;
 }
