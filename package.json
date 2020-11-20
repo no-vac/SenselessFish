@@ -1,5 +1,5 @@
 {
-  "name": "SenselessFishClient",
+  "name": "SenselessFish",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,9 +14,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "animejs": "^3.2.1",
-    "comfy.js": "^1.1.6",
-    "twitch": "^4.2.7",
-    "twitch-pubsub-client": "^4.2.7"
+    "comfy.js": "^1.1.6"
   }
 }

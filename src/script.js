@@ -1,32 +1,47 @@
-// const anime = require('animejs');
+anime.suspendWhenDocumentHidden = false;
 const ComfyJS = require('comfy.js');
 
-// document.querySelector('body').addEventListener('click', () => createFish());
 let fishies = [];
 
+const XOFFSET = 50;
+const YOFFSET = 150;
+const STEPS = 6;
+const STEPTIME = 6000;
+const STREAM = 'senselesssamie';
+
+// document
+//   .querySelector('body')
+//   .addEventListener('click', () => createFish('novac4'));
+
 ComfyJS.onChat = (user, message, flags, self, extra) => {
-  // console.log(`${user}: ${message}`);
-  // console.log('flags: ', flags);
+  // if (extra.userState['msg-id'] === 'highlighted-message') {
+  // console.log(user, '\nflags: ', flags);
   // console.log('self: ', self);
   // console.log('extra: ', extra);
 
-  createFish(user);
+  createFish(STREAM);
+  // }
 };
-ComfyJS.Init('senselesssamie');
+ComfyJS.Init('shroud');
 
 function createFish(username) {
   let randomId = Math.round(Math.random() * 1000);
-  console.log('creating fish ', randomId);
+  // console.log('creating fish ', randomId);
 
   let fishwrapperEl = document.createElement('div');
   fishwrapperEl.classList.add('fishwrapper');
   fishwrapperEl.setAttribute('id', 'f' + randomId);
 
+  let usernameWrapperEl = document.createElement('div');
+  usernameWrapperEl.classList.add('usernameWrapper');
+
   let usernameEl = document.createElement('div');
   usernameEl.classList.add('username');
 
   usernameEl.innerText = username;
-  fishwrapperEl.appendChild(usernameEl);
+  usernameWrapperEl.appendChild(usernameEl);
+
+  fishwrapperEl.appendChild(usernameWrapperEl);
 
   let imgEl = document.createElement('img');
   imgEl.setAttribute(
@@ -34,69 +49,39 @@ function createFish(username) {
     location.origin + location.pathname + '/assets/fish.png'
   );
   imgEl.setAttribute('width', '50');
+
+  if (Math.round(Math.random())) {
+    imgEl.style = '-webkit-transform: scaleX(-1);transform: scaleX(-1);';
+  }
   fishwrapperEl.appendChild(imgEl);
 
   document.querySelector('body').appendChild(fishwrapperEl);
   let fish = anime({
     targets: document.querySelector('#f' + randomId),
-
-    keyframes: [
-      {
-        translateY: anime.random(200, 1080 - 200),
-        translateX: anime.random(100, 1920 - 100),
-        duration: anime.random(1000, 3000),
-        opacity: 1,
-      },
-      {
-        translateY: anime.random(200, 1080 - 200),
-        translateX: anime.random(100, 1920 - 100),
-        duration: anime.random(1000, 3000),
-      },
-      {
-        translateY: anime.random(200, 1080 - 200),
-        translateX: anime.random(100, 1920 - 100),
-        duration: anime.random(1000, 3000),
-      },
-      {
-        translateY: anime.random(200, 1080 - 200),
-        translateX: anime.random(100, 1920 - 100),
-        duration: anime.random(1000, 3000),
-      },
-      {
-        translateY: anime.random(200, 1080 - 200),
-        translateX: anime.random(100, 1920 - 100),
-        duration: anime.random(1000, 3000),
-      },
-      {
-        translateY: anime.random(200, 1080 - 200),
-        translateX: anime.random(100, 1920 - 100),
-        duration: anime.random(1000, 3000),
-      },
-      {
-        translateY: anime.random(200, 1080 - 200),
-        translateX: anime.random(100, 1920 - 100),
-        duration: anime.random(1000, 3000),
-      },
-      {
-        translateY: anime.random(200, 1080 - 200),
-        translateX: anime.random(100, 1920 - 100),
-        duration: anime.random(1000, 3000),
-      },
-      {
-        translateY: anime.random(200, 1080 - 200),
-        translateX: anime.random(100, 1920 - 100),
-        duration: anime.random(1000, 3000),
-      },
-      {
-        translateY: -300,
-        duration: 5000,
-      },
-    ],
+    keyframes: genKeyframes(STEPS),
     duration: 3000,
     easing: 'easeInOutSine',
     complete: function () {
       document.querySelector('#f' + randomId).remove();
     },
-  }).play();
+  });
   fishies.push(fish);
+}
+
+function genKeyframes(steps) {
+  let keyframes = [];
+  for (let i = 0; i < steps; i++) {
+    keyframes.push({
+      opacity: 1,
+      translateY: anime.random(0, 1080 - YOFFSET),
+      translateX: anime.random(XOFFSET, 1920 - XOFFSET),
+      duration: STEPTIME,
+    });
+  }
+  keyframes.push({
+    translateY: -300,
+    duration: STEPTIME,
+  });
+  console.log('keyframes', keyframes);
+  return keyframes;
 }
