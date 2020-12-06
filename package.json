@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "build": "npx webpack --config webpack.config.js",
-    "build-watch": "npx webpack --watch --progress --config webpack.config.js" 
+    "build-watch": "npx webpack --watch --progress --config webpack.config.js"
   },
   "keywords": [],
   "author": "Cristian Novac",

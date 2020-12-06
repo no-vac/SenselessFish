@@ -10,17 +10,11 @@ const STEPTIME = 6000;
 const STREAM = 'senselesssamie';
 const REWARDID = '7b60210b-4a9a-46de-8593-9d189b02c912';
 
-// document
-//   .querySelector('body')
-//   .addEventListener('click', () => createFish('novac4'));
+document
+  .querySelector('body')
+  .addEventListener('click', () => createFish('novac4'));
 
 ComfyJS.onChat = (user, message, flags, self, extra) => {
-  // if (extra.userState['msg-id'] === 'highlighted-message') {
-  // console.log(user, '\nflags: ', flags);
-  // console.log('self: ', self);
-  // console.log('extra: ', extra);
-  // console.log('message: ', message);
-
   if (extra.customRewardId === REWARDID) {
     createFish(user);
   }
@@ -49,17 +43,32 @@ function createFish(username) {
   fishwrapperEl.appendChild(usernameWrapperEl);
 
   let imgEl = document.createElement('img');
+  imgEl.setAttribute('class', 'fish');
   imgEl.setAttribute(
     'src',
     location.origin + location.pathname + '/assets/fish.png'
   );
-  imgEl.setAttribute('width', '50');
+
+  fishwrapperEl.appendChild(imgEl);
+  let hatEl = document.createElement('img');
+  hatEl.setAttribute(
+    'src',
+    location.origin + location.pathname + '/assets/hatR.png'
+  );
+  hatEl.classList.add('hat');
+  hatEl.classList.add('hatR');
 
   if (Math.round(Math.random())) {
-    imgEl.style = '-webkit-transform: scaleX(-1);transform: scaleX(-1);';
+    hatEl.classList.add('mirror');
   }
-  fishwrapperEl.appendChild(imgEl);
 
+  fishwrapperEl.appendChild(hatEl);
+
+  if (Math.round(Math.random())) {
+    imgEl.classList.add('mirror');
+    hatEl.classList.remove('hatR');
+    hatEl.classList.add('hatL');
+  }
   document.querySelector('body').appendChild(fishwrapperEl);
   let fish = anime({
     targets: document.querySelector('#f' + randomId),
