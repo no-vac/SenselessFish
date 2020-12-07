@@ -18,8 +18,6 @@ ComfyJS.onChat = (user, message, flags, self, extra) => {
   if (extra.customRewardId === REWARDID) {
     createFish(user);
   }
-
-  // }
 };
 ComfyJS.Init(STREAM);
 
@@ -41,28 +39,29 @@ function createFish(username) {
   usernameWrapperEl.appendChild(usernameEl);
 
   fishwrapperEl.appendChild(usernameWrapperEl);
-
+  let imgWrapperEl = document.createElement('div');
+  imgWrapperEl.classList.add('imgWrapper');
+  fishwrapperEl.appendChild(imgWrapperEl);
   let imgEl = document.createElement('img');
-  imgEl.setAttribute('class', 'fish');
+  imgEl.classList.add('fish');
   imgEl.setAttribute(
     'src',
     location.origin + location.pathname + '/assets/fish.png'
   );
+  imgWrapperEl.appendChild(imgEl);
 
-  fishwrapperEl.appendChild(imgEl);
   let hatEl = document.createElement('img');
+  hatEl.classList.add('hat', 'hatR');
   hatEl.setAttribute(
     'src',
     location.origin + location.pathname + '/assets/hatR.png'
   );
-  hatEl.classList.add('hat');
-  hatEl.classList.add('hatR');
 
   if (Math.round(Math.random())) {
     hatEl.classList.add('mirror');
   }
 
-  fishwrapperEl.appendChild(hatEl);
+  imgWrapperEl.appendChild(hatEl);
 
   if (Math.round(Math.random())) {
     imgEl.classList.add('mirror');
