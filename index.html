@@ -16,6 +16,7 @@
         height: 100vh;
         width: 100vw;
         font-family: Arial, Helvetica, sans-serif;
+        background-color: darkgrey;
       }
       .fishwrapper {
         position: absolute;
@@ -23,12 +24,13 @@
         /* left: -200px;
         top: -200px; */
       }
+
       div {
         /* position: absolute; */
         min-width: 50px;
         text-align: center;
       }
-      .usernameWrapper {
+      .fish_usernameWrapper {
         text-align: center;
         font-weight: bold;
         /* border: 1px solid black; */
@@ -40,13 +42,14 @@
           rgba(220, 153, 80, 1) 100%
         );
       }
-      .username {
+
+      .fish_username {
         display: inline;
         padding: 0 0.5rem 0 0.5rem;
       }
 
       .fish,
-      .imgWrapper {
+      .fish_imgWrapper {
         width: 50px;
         margin-left: auto;
         margin-right: auto;
@@ -62,12 +65,50 @@
       }
 
       .hatL {
-        left: 35px;
+        border: 1px solid red;
+        left: 50%;
         transform: rotateZ(-10deg);
       }
       .hatR {
         transform: rotateZ(-5deg);
-        left: 15px;
+        left: calc(50% - 15px);
+      }
+
+      .flake_usernameWrapper {
+        text-align: center;
+        font-weight: bold;
+        /* border: 1px solid black; */
+        border-radius: 0.5rem;
+        background: rgb(242, 114, 41);
+        background: linear-gradient(
+          123deg,
+          rgba(242, 114, 41, 1) 0%,
+          rgba(220, 153, 80, 1) 100%
+        );
+      }
+
+      .flakewrapper {
+        position: absolute;
+      }
+      .flake,
+      .flake_imgWrapper {
+        width: 50px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .flake_imgWrapper {
+        animation: rotate 5s linear infinite;
+      }
+
+      @keyframes rotate {
+        100% {
+          transform: rotateZ(360deg) rotateY(360deg) rotateX(360deg);
+        }
+      }
+      .flake_username {
+        display: inline;
+        padding: 0 0.5rem 0 0.5rem;
       }
     </style>
   </body>

@@ -1,45 +1,27 @@
-anime.suspendWhenDocumentHidden = false;
-const ComfyJS = require('comfy.js');
-
-let fishies = [];
-
 const XOFFSET = 50;
 const YOFFSET = 150;
 const STEPS = 7;
 const STEPTIME = 6000;
-const STREAM = 'senselesssamie';
-const REWARDID = '7b60210b-4a9a-46de-8593-9d189b02c912';
-
-document
-  .querySelector('body')
-  .addEventListener('click', () => createFish('novac4'));
-
-ComfyJS.onChat = (user, message, flags, self, extra) => {
-  if (extra.customRewardId === REWARDID) {
-    createFish(user);
-  }
-};
-ComfyJS.Init(STREAM);
 
 function createFish(username) {
   let randomId = Math.round(Math.random() * 1000);
 
   let fishwrapperEl = document.createElement('div');
   fishwrapperEl.classList.add('fishwrapper');
-  fishwrapperEl.setAttribute('id', 'f' + randomId);
+  fishwrapperEl.setAttribute('id', 'fish_' + randomId);
 
   let usernameWrapperEl = document.createElement('div');
-  usernameWrapperEl.classList.add('usernameWrapper');
+  usernameWrapperEl.classList.add('fish_usernameWrapper');
 
   let usernameEl = document.createElement('div');
-  usernameEl.classList.add('username');
+  usernameEl.classList.add('fish_username');
 
   usernameEl.innerText = username;
   usernameWrapperEl.appendChild(usernameEl);
 
   fishwrapperEl.appendChild(usernameWrapperEl);
   let imgWrapperEl = document.createElement('div');
-  imgWrapperEl.classList.add('imgWrapper');
+  imgWrapperEl.classList.add('fish_imgWrapper');
   fishwrapperEl.appendChild(imgWrapperEl);
   let imgEl = document.createElement('img');
   imgEl.classList.add('fish');
@@ -68,16 +50,15 @@ function createFish(username) {
     hatEl.classList.add('hatL');
   }
   document.querySelector('body').appendChild(fishwrapperEl);
-  let fish = anime({
-    targets: document.querySelector('#f' + randomId),
+  anime({
+    targets: document.querySelector('#fish_' + randomId),
     keyframes: genKeyframes(STEPS),
     duration: 3000,
     easing: 'easeInOutSine',
     complete: function () {
-      document.querySelector('#f' + randomId).remove();
+      document.querySelector('#fish_' + randomId).remove();
     },
   });
-  fishies.push(fish);
 }
 
 function genKeyframes(steps) {
@@ -96,3 +77,5 @@ function genKeyframes(steps) {
   });
   return keyframes;
 }
+
+module.exports = createFish;
