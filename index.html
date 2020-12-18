@@ -8,7 +8,20 @@
     <script src="./dist/anime.min.js"></script>
   </head>
   <body>
+    <!-- <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1250px"
+      height="850px"
+      viewBox="0 0 1250 850"
+    >
+      <path
+        d="M523,0q-70.09,27.59,103,81t-104,127t62,165t-27,158t-26,132t165,93t-58,94"
+      />
+    </svg> -->
     <style>
+      svg {
+        fill: none;
+      }
       body {
         margin: 0;
         padding: 0;
@@ -65,7 +78,6 @@
       }
 
       .hatL {
-        border: 1px solid red;
         left: 50%;
         transform: rotateZ(-10deg);
       }
@@ -75,16 +87,17 @@
       }
 
       .flake_usernameWrapper {
-        text-align: center;
-        font-weight: bold;
+        line-height: 0.5em;
         /* border: 1px solid black; */
         border-radius: 0.5rem;
-        background: rgb(242, 114, 41);
+        background-color: white;
+        color: black;
+        /* background: rgb(242, 114, 41);
         background: linear-gradient(
           123deg,
           rgba(242, 114, 41, 1) 0%,
-          rgba(220, 153, 80, 1) 100%
-        );
+          rgba(220, 153, 80, 1) 100% */
+        /* ); */
       }
 
       .flakewrapper {
@@ -92,7 +105,7 @@
       }
       .flake,
       .flake_imgWrapper {
-        width: 50px;
+        width: 40px;
         margin-left: auto;
         margin-right: auto;
       }
@@ -108,7 +121,9 @@
       }
       .flake_username {
         display: inline;
-        padding: 0 0.5rem 0 0.5rem;
+        text-align: center;
+        font-weight: bold;
+        font-size: 0.5em;
       }
     </style>
   </body>

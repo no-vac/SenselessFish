@@ -8,7 +8,7 @@ const REWARDID = '7b60210b-4a9a-46de-8593-9d189b02c912';
 const FLAKECHANCE = 0.1;
 
 document.querySelector('body').addEventListener('click', () => {
-  // createFish('novac4');
+  // createFish('asdasdasdasdadasdss');
   createFlake('novac4');
 });
 let lastUser = '';

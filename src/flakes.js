@@ -1,16 +1,19 @@
-const DURATION = 1000 * 10;
+const DURATION = 1000 * 20;
 const XOFFSET = 100;
-const YOFFSET = 150;
-const ROTATION = 360 * 6;
+const YOFFSET = 80;
+const STEP = 100;
+const ALTRANGE = 100;
 
 function createFlake(username) {
   let randomId = Math.round(Math.random() * 1000);
+  let startX = getRandomX();
+  let startY = -YOFFSET;
+
   let flakewrapperEl = document.createElement('div');
   flakewrapperEl.classList.add('flakewrapper');
   flakewrapperEl.setAttribute('id', 'flake_' + randomId);
   flakewrapperEl.style.position = 'absolute';
-  flakewrapperEl.style.left = getRandomX() + 'px';
-  flakewrapperEl.style.top = -YOFFSET + 'px';
+  flakewrapperEl.style.top = startY + 'px';
   console.log(flakewrapperEl);
 
   let usernameWrapperEl = document.createElement('div');
@@ -36,17 +39,38 @@ function createFlake(username) {
 
   anime({
     targets: document.querySelector('#flake_' + randomId),
-    translateY: 1080,
     duration: DURATION,
-    easing: 'linear',
+    keyframes: genKeyframes(startX, startY, 1080 + YOFFSET, STEP),
+    easing: 'cubicBezier(0.505, 0.005, 0.500, 1.000)',
     complete: function () {
       document.querySelector('#flake_' + randomId).remove();
     },
   });
 }
 
+//generate random X coordnate on screen
 function getRandomX() {
   return Math.round(Math.random() * 1920 - XOFFSET);
+}
+
+//generate keyframes for the snowflake.
+function genKeyframes(startX, startY, endY, stepY) {
+  let keyframes = [];
+  let sign = true;
+  for (let i = startY; i < endY; i += stepY) {
+    sign = !sign;
+    keyframes.push({
+      translateX: getRandomXinRange(startX, ALTRANGE, sign),
+      translateY: i,
+    });
+  }
+  console.log(keyframes);
+  return keyframes;
+}
+
+function getRandomXinRange(x, range, sign) {
+  let delta = Math.round(Math.random() * range);
+  return sign ? x + delta : x - delta;
 }
 
 module.exports = createFlake;
