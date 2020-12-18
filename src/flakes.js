@@ -32,7 +32,10 @@ function createFlake(username) {
   imgEl = document.createElement('img');
   imgEl.classList.add('flake');
   let imgId = Math.round(Math.random() * 4) + 1;
-  imgEl.setAttribute('src', `/assets/flake${imgId}.png`);
+  imgEl.setAttribute(
+    'src',
+    location.origin + location.pathname + `/assets/flake${imgId}.png`
+  );
   imgWrapperEl.appendChild(imgEl);
 
   document.querySelector('body').appendChild(flakewrapperEl);
