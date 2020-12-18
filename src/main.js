@@ -5,7 +5,7 @@ const createFlake = require('./flakes');
 
 const STREAM = 'senselesssamie';
 const REWARDID = '7b60210b-4a9a-46de-8593-9d189b02c912';
-const FLAKECHANCE = 0.1;
+const FLAKECHANCE = 0.25;
 
 document.querySelector('body').addEventListener('click', () => {
   // createFish('asdasdasdasdadasdss');
