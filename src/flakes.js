@@ -43,7 +43,7 @@ function createFlake(username) {
   anime({
     targets: document.querySelector('#flake_' + randomId),
     duration: DURATION,
-    keyframes: genKeyframes(startX, startY, 1200, STEP),
+    keyframes: genKeyframes(startX, startY, 1500, STEP),
     easing: 'cubicBezier(0.505, 0.005, 0.500, 1.000)',
     complete: function () {
       document.querySelector('#flake_' + randomId).remove();
