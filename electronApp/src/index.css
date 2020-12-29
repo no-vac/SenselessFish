@@ -1,0 +1,16 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  margin: auto;
+  max-width: 38rem;
+  padding: 2rem;
+}
+.serverLabel {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 2rem;
+}
+/* 
+button .btn-success {
+  height: 2em;
+} */

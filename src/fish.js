@@ -1,7 +1,8 @@
+const config = require('./config.json');
 const XOFFSET = 50;
 const YOFFSET = 150;
-const STEPS = 7;
-const STEPTIME = 6000;
+const STEPS = config.fish.numberOfSteps;
+const STEPTIME = config.fish.stepDuration;
 
 function createFish(username) {
   let randomId = Math.round(Math.random() * 1000);
@@ -25,10 +26,7 @@ function createFish(username) {
   fishwrapperEl.appendChild(imgWrapperEl);
   let imgEl = document.createElement('img');
   imgEl.classList.add('fish');
-  imgEl.setAttribute(
-    'src',
-    location.origin + location.pathname + '/assets/fish.png'
-  );
+  imgEl.setAttribute('src', './assets/fish.png');
   imgWrapperEl.appendChild(imgEl);
 
   let hatEl = document.createElement('img');

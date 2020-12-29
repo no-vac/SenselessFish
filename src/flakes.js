@@ -1,4 +1,5 @@
-const DURATION = 1000 * 20;
+const config = require('./config.json');
+const DURATION = config.secondary.animationDuration;
 const XOFFSET = 100;
 const YOFFSET = 80;
 const STEP = 100;
@@ -32,10 +33,7 @@ function createFlake(username) {
   imgEl = document.createElement('img');
   imgEl.classList.add('flake');
   let imgId = Math.round(Math.random() * 4) + 1;
-  imgEl.setAttribute(
-    'src',
-    location.origin + location.pathname + `/assets/flake${imgId}.png`
-  );
+  imgEl.setAttribute('src', `./assets/flake${imgId}.png`);
   imgWrapperEl.appendChild(imgEl);
 
   document.querySelector('body').appendChild(flakewrapperEl);
