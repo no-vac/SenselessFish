@@ -3,7 +3,7 @@ const YOFFSET = 150;
 const STEPS = 7;
 const STEPTIME = 6000;
 
-function createFish(username) {
+function createFish(username, isXmas) {
   let randomId = Math.round(Math.random() * 1000);
 
   let fishwrapperEl = document.createElement('div');
@@ -31,23 +31,26 @@ function createFish(username) {
   );
   imgWrapperEl.appendChild(imgEl);
 
-  let hatEl = document.createElement('img');
-  hatEl.classList.add('hat', 'hatR');
-  hatEl.setAttribute(
-    'src',
-    location.origin + location.pathname + '/assets/hatR.png'
-  );
+  if (isXmas) {
+    let hatEl = document.createElement('img');
+    hatEl.classList.add('hat', 'hatR');
+    hatEl.setAttribute(
+      'src',
+      location.origin + location.pathname + '/assets/hatR.png'
+    );
 
-  if (Math.round(Math.random())) {
-    hatEl.classList.add('mirror');
+    if (Math.round(Math.random())) {
+      hatEl.classList.add('mirror');
+    }
+    imgWrapperEl.appendChild(hatEl);
   }
-
-  imgWrapperEl.appendChild(hatEl);
 
   if (Math.round(Math.random())) {
     imgEl.classList.add('mirror');
-    hatEl.classList.remove('hatR');
-    hatEl.classList.add('hatL');
+    if (isXmas) {
+      hatEl.classList.remove('hatR');
+      hatEl.classList.add('hatL');
+    }
   }
   document.querySelector('body').appendChild(fishwrapperEl);
   anime({
