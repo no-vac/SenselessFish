@@ -2,6 +2,7 @@ const { ipcRenderer } = require('electron');
 const fs = require('fs');
 const { updateConfig } = require('./util/config');
 const config = require('./public/config.json');
+const { version } = require('../package.json');
 
 let serverIsRunning;
 ipcRenderer.on('serverStarted', (e, arg) => {
@@ -12,6 +13,11 @@ ipcRenderer.on('serverStopped', (e, arg) => {
 });
 // ipcRenderer.send('async-msg', 'ping');
 document.addEventListener('DOMContentLoaded', () => {
+  pageInit();
+});
+
+function pageInit() {
+  document.querySelector('#version').innerText = version;
   formInit();
   ipcRenderer.invoke('getServerStatus').then((status) => {
     console.log(status);
@@ -19,10 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let startServerButton = document.querySelector('button');
     startServerButton.addEventListener('click', handleLocalServer);
     startServerButton = serverIsRunning
-      ? changeButtonSop(startServerButton)
+      ? changeButtonStop(startServerButton)
       : changeButtonStart(startServerButton);
   });
-});
+}
 
 function formInit() {
   document.querySelector('#fish_numberOfSteps').value =

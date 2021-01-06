@@ -4,47 +4,62 @@ const XOFFSET = 100;
 const YOFFSET = 80;
 const STEP = 100;
 const ALTRANGE = 100;
+const types = ['snowflake', 'bubble'];
 
-function createFlake(username) {
-  let randomId = Math.round(Math.random() * 1000);
-  let startX = getRandomX();
-  let startY = -YOFFSET;
+function createParticle(username, type) {
+  if (!types.includes(type)) return; //prevent unknown types
+  const randomId = Math.round(Math.random() * 1000);
+  const startX = getRandomX();
+  let startY;
+  if (type === 'snowflake') startY = -YOFFSET;
+  if (type === 'bubble') startY = 1080;
 
+  let endY;
+  if (type === 'snowflake') endY = 1500;
+  if (type === 'bubble') endY = -YOFFSET;
+
+  //paricle wrapper
   let flakewrapperEl = document.createElement('div');
-  flakewrapperEl.classList.add('flakewrapper');
-  flakewrapperEl.setAttribute('id', 'flake_' + randomId);
+  flakewrapperEl.classList.add(`${type}wrapper`);
+  flakewrapperEl.setAttribute('id', 'p_' + randomId);
   flakewrapperEl.style.position = 'absolute';
   flakewrapperEl.style.top = startY + 'px';
-  console.log(flakewrapperEl);
 
+  //username wrapper
   let usernameWrapperEl = document.createElement('div');
-  usernameWrapperEl.classList.add('flake_usernameWrapper');
+  usernameWrapperEl.classList.add(`${type}_usernameWrapper`);
   flakewrapperEl.appendChild(usernameWrapperEl);
 
+  //username element
   let usernameEl = document.createElement('div');
-  usernameEl.classList.add('flake_username');
+  usernameEl.classList.add(`${type}_username`);
   usernameEl.innerText = username;
   usernameWrapperEl.appendChild(usernameEl);
 
+  //image wrapper
   let imgWrapperEl = document.createElement('div');
-  imgWrapperEl.classList.add('flake_imgWrapper');
+  imgWrapperEl.classList.add(`${type}_imgWrapper`);
   flakewrapperEl.appendChild(imgWrapperEl);
 
+  //image source
   imgEl = document.createElement('img');
-  imgEl.classList.add('flake');
-  let imgId = Math.round(Math.random() * 4) + 1;
-  imgEl.setAttribute('src', `./assets/flake${imgId}.png`);
+  imgEl.classList.add(`${type}`);
+  if (type === 'snowflake') {
+    let imgId = Math.round(Math.random() * 4) + 1;
+    imgEl.setAttribute('src', `./assets/flake${imgId}.png`);
+  }
+  if (type === 'bubble') imgEl.setAttribute('src', `./assets/bubble.png`);
   imgWrapperEl.appendChild(imgEl);
 
   document.querySelector('body').appendChild(flakewrapperEl);
 
   anime({
-    targets: document.querySelector('#flake_' + randomId),
+    targets: document.querySelector('#p_' + randomId),
     duration: DURATION,
-    keyframes: genKeyframes(startX, startY, 1500, STEP),
+    keyframes: genKeyframes(startX, startY, endY, STEP),
     easing: 'cubicBezier(0.505, 0.005, 0.500, 1.000)',
     complete: function () {
-      document.querySelector('#flake_' + randomId).remove();
+      document.querySelector('#p_' + randomId).remove();
     },
   });
 }
@@ -74,4 +89,4 @@ function getRandomXinRange(x, range, sign) {
   return sign ? x + delta : x - delta;
 }
 
-module.exports = createFlake;
+module.exports = createParticle;

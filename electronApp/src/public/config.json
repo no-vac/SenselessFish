@@ -1,9 +1,12 @@
 {
+    "streamID" :"",
+    "RewardID": "",
     "fish":{
         "numberOfSteps": 7,
         "stepDuration":6000
     },
     "secondary":{
+        "spawnChance": 0.25,
         "mode":"snowflake",
         "animationDuration":20000
     }
