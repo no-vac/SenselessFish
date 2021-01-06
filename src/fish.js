@@ -4,6 +4,7 @@ const STEPS = 7;
 const STEPTIME = 6000;
 
 function createFish(username, isXmas) {
+  console.log(isXmas);
   let randomId = Math.round(Math.random() * 1000);
 
   let fishwrapperEl = document.createElement('div');
@@ -30,9 +31,10 @@ function createFish(username, isXmas) {
     location.origin + location.pathname + '/assets/fish.png'
   );
   imgWrapperEl.appendChild(imgEl);
+  console.log(isXmas);
 
+  let hatEl = document.createElement('img');
   if (isXmas) {
-    let hatEl = document.createElement('img');
     hatEl.classList.add('hat', 'hatR');
     hatEl.setAttribute(
       'src',

@@ -8,8 +8,8 @@ const REWARDID = '7b60210b-4a9a-46de-8593-9d189b02c912';
 const FLAKECHANCE = 0.25;
 
 document.querySelector('body').addEventListener('click', () => {
-  // createFish('asdasdasdasdadasdss');
-  createFlake('novac4');
+  createFish('pika_pika_mother_frikers', true);
+  // createFlake('novac4');
 });
 let lastUser = '';
 ComfyJS.onChat = (user, message, flags, self, extra) => {
