@@ -17,7 +17,11 @@ ComfyJS.onChat = (user, message, flags, self, extra) => {
   if ((lastUser == '' || lastUser !== user) && chance <= FLAKECHANCE)
     createFlake(user);
   if (extra.customRewardId === REWARDID) {
-    createFish(user);
+    if (user === 'pika_pika_mother_frikers') {
+      createFish(user, true);
+    } else {
+      createFish(user, false);
+    }
   }
   lastUser = user;
 };
